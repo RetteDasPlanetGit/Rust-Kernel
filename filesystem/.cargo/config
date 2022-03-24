@@ -1,0 +1,7 @@
+[target.i686-bin]
+linker = "i686-elf-ld"
+rustflags = [
+    "-C", "link-arg=-Ttext=0x0",
+    "-C", "target-feature=+crt-static",
+    "-Z", "linker-flavor=ld",
+]
