@@ -1,7 +1,7 @@
 [package]
 name = "std"
 version = "0.1.0"
-authors = ["Arbel Israeli <arbel03@gmail.com>"]
+authors = ["Jeremy T."]
 
 [dependencies]
 bitmap_allocator = { path="../../bitmap_allocator" }
