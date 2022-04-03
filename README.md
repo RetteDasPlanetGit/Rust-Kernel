@@ -1,4 +1,4 @@
-# Kompilierungshandbuch
+# Rust-Kernel
 
 Für die Kompilierung wird eine Linux-Umgebung benötigt, Dosfstools wird benötigt, um ein Disk-Img zu erzeugen.
 
