@@ -1,18 +1,43 @@
-# Rust-Kernel
+Experimental Kernel (and eventually Operating System)
+=====
 
-Für die Kompilierung wird eine Linux-Umgebung benötigt, Dosfstools wird benötigt, um ein Disk-Img zu erzeugen.
+This is an experiment in writing an OS Kernel in rust (http://rust-lang.org).
 
-### Rust installieren
-Installieren Sie rustup von https://www.rustup.rs  
+Mostly the architecture is being designed as I go along, but it will be written to be architecture independent (the current verison is x86\_64/amd64).
 
-### Rust konfigurieren
-Setzen Sie den Standard-Schlüsselbund auf nightly: `rustup override add nightly`
+## Design Features
+- Runtime module initialisation with dependencies
+- Clear user-kernel separation of duties
+ - Userland owns the ELF loader, kernel uses a custom format for init.
+- Object-based syscall API
+- Kernel-provided window manager (yes, I know old windows did this)
 
-### Xargo installieren
-Installieren Sie Xargo, einen Wrapper für cargo, der die Kreuzkompilierung vereinfacht.  
-`cargo install xargo`  
-Fügen Sie die Rust-Quellcode-Komponente für die Cross-Kompilierung hinzu (wird von Xargo benötigt).  
-rustup komponente hinzufügen rust-src`  
+## Progress
+- Filesystems
+ - ISO9660
+ - FAT12/16/32
+- Storage
+ - (P)ATA
+ - SATA (AHCI)
+ - ATAPI CDROM
+ - VirtIO Block
+- Input
+ - PS2 Keyboard/Mouse
+- Graphics
+ - Multiboot only
+- GUI Apps
+ - Login (Credentials are root/password)
+ - "GUI Shell" (with background!)
+ - Text Terminal app (with basic set of commands)
+ - Filesystem viewer
+- Architectures
+ - amd64 (aka x86\_64) - Boots to limit of implementation
+ - armv7 - Loads userland then crashes
 
-### Ausführen
-Ausführen mit `./run.sh`
+
+## Build Dependencies (Files not included)
+- `nasm`
+- GNU Binutils (cross-compiled)
+- GCC (for ACPICA)
+- `pxelinux`
+- `libguestfs-tools` (for creating disk images)

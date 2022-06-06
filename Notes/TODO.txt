@@ -1,0 +1,54 @@
+
+
+# Core Features/Drivers #
+- Networking
+ - Requires a design for both kernel API and user API
+ - Interacts with permissions (inetd-type system for servers?)
+  - Maybe just have a service like the FS?
+ - Client sockets unrestricted? (so that a web browser isn't spammy)
+- USB Support
+ - Requires API design for kernel API
+ - Possibly expose a user-side API? (for arbitary drivers)
+
+# Logging and Messages #
+- Kernel log rendered to its "window"
+ - Downside: Kernel log is verbose, this will slow down most operations (on render)
+ - Having an aliased buffer containing the messages would be better (render in thread)
+- Kernel panic messages rendered to display
+  - Mostly done.
+- User panic messages rendered to a kernel-owned window
+ - This same infrastructure can be used for blocked windows/processes
+
+# Syscalls #
+Named object handles (or just named VFS roots?)
+
+# Userland
+- AcessNative-esque test suite?
+
+# Filesystem #
+- Strict file/object permissions via handle permissions
+ - Pass a set of directory handles to new processes, indicating what they can access
+  - Extend object passing to use names for the passed handles
+ - Disallow write to anything via absolute paths
+ - MAYBE disallow absolute paths?
+ - A process can request a handle via a service (which presents the file/folder-open dialog)
+ - Standard set of paths: "Root", "AppRoot", "AppData"
+- Remodel VFS to have split roots
+ - Things like sysroot with retargeted handles
+
+# GUI tweaks #
+- Tag group handle with the application name (for server-side identification)
+
+# GUI Apps #
+- Text editor
+ - Simple text edit control
+ - With scrollbars
+ - Menu bar
+
+# Async IO #
+- Unified kernel API
+- User can have two, one pure async, one standard sync
+
+<!-- vim: ft=markdown
+-->
+

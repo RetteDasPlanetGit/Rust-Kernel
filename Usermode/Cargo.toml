@@ -1,0 +1,15 @@
+[workspace]
+members = [
+	"loader/bin",
+	"init",
+	"login",
+	"handle_server",
+	"simple_console", "shell",
+	"filebrowser", "fileviewer",
+	"vfs_test",
+	"hello_world",
+	]
+exclude = ["loader/native"]
+
+[profile.release]
+debug = true

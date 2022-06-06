@@ -1,8 +1,0 @@
-[package]
-name = "std"
-version = "0.1.0"
-authors = ["Jeremy T."]
-
-[dependencies]
-bitmap_allocator = { path="../../bitmap_allocator" }
-rlibc = "1.0"

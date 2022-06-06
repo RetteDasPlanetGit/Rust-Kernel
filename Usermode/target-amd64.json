@@ -1,0 +1,17 @@
+{
+	"cpu": "x86-64",
+	"data-layout": "e-m:e-i64:64-f80:128-n8:16:32:64-S128",
+	"llvm-target": "x86_64-unknown-none",
+	"target-endian": "little",
+	"target-pointer-width": "64",
+	"target-c-int-width": "32",
+	"os": "tifflin",
+	"arch": "x86_64",
+		"linker": "x86_64-none-elf-ld",
+		"linker-flavor": "ld",
+		"pre-link-args": { "ld": ["-T", "link-amd64.ld", "-z","max-page-size=4096", "--gc-sections", "--start-group"] },
+		"post-link-args": { "ld": ["--end-group"] },
+		"disable-redzone": true,
+		"executables": true,
+		"dynamic-linking": true
+}

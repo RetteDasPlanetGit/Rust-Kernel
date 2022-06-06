@@ -1,0 +1,10 @@
+[package]
+name = "storage-scsi"
+version = "0.0.0"
+edition = "2018"
+
+[lib]
+path = "lib.rs"
+
+[dependencies]
+kernel = { path = "../../Core" }

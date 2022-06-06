@@ -1,0 +1,32 @@
+#!/bin/bash
+set -e
+
+IMAGE="$1"
+ARGS="$2"
+QEMU_OPTS="$3"
+
+QEMU_OPTS=$QEMU_OPTS" -net user,tftp=.pxe/,bootfile=pxelinux.0"
+QEMU_OPTS=$QEMU_OPTS" -boot n"
+
+PXELINUX_DIR=/usr/lib/syslinux/
+
+# Create PXE boot dir
+rm -rf .pxe/
+mkdir -p .pxe/pxelinux.cfg
+if [ -e ${PXELINUX_DIR}pxelinux.0 ]; then
+	cp ${PXELINUX_DIR}pxelinux.0 ${PXELINUX_DIR}mboot.c32 .pxe/
+else
+	cp /usr/lib/PXELINUX/pxelinux.0 .pxe/
+	cp /usr/lib/syslinux/modules/bios/mboot.c32 .pxe/
+	cp /usr/lib/syslinux/modules/bios/{ldlinux.c32,libcom32.c32} .pxe/
+fi
+cp $IMAGE .pxe
+cat <<EOF > .pxe/pxelinux.cfg/default
+default testkern
+label testkern
+	kernel mboot.c32
+	append ${IMAGE##*/} ${ARGS}
+EOF
+
+qemu-system-x86_64 $QEMU_OPTS
+# | tail -n +2

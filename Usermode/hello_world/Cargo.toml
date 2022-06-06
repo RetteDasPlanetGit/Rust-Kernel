@@ -1,0 +1,8 @@
+[package]
+name = "hello_world"
+version = "0.0.1"
+
+[dependencies]
+std_rt = { path = "../libstd_rt" }
+syscalls = { path = "../libsyscalls" }
+

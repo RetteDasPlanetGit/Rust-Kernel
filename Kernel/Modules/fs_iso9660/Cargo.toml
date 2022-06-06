@@ -1,0 +1,12 @@
+[package]
+name = "fs_iso9660"
+version = "0.0.0"
+edition = "2018"
+
+[lib]
+path = "lib.rs"
+
+[dependencies]
+kernel = { path = "../../Core" }
+block_cache = { path = "../block_cache" }
+
