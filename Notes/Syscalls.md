@@ -1,4 +1,4 @@
-% Tiffin Design Notes: Syscalls
+Design Notes: Syscalls
 
 # Rough Notes
 - Well segmented (group syscalls by allocating n syscalls per subsystem)
